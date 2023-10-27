@@ -23,5 +23,17 @@ function cadastrarProduto() {
 }
 
 function listarProdutos() {
-    console.log(produtos);
+    const tbodyProdutos = document.querySelector('#tbody-produtos');
+
+    tbodyProdutos.innerHTML = '';
+
+    for(let i = 0; i < produtos.length; i++) {
+        tbodyProdutos.innerHTML += `
+            <tr>
+                <td>${produtos[i].nome}</td>
+                <td>${produtos[i].preco}</td>
+                <td>${produtos[i].quantidade}</td>
+            </tr>
+        `
+    }
 }

@@ -1,0 +1,11 @@
+body {
+    margin: 0 4rem;
+}
+
+.display-none {
+    display: none;
+}
+.display-flex {
+    display: flex;
+    flex-direction: column;
+}

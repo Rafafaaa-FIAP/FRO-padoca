@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css" />
+
     <title>Padoca da Vila</title>
 </head>
 <body>
-    <h1>Cadastro de Produto</h1>
+    <h1>Gerenciador de produtos</h1>
+    <button id="new-product">Novo Produto</button>
 
-    <form>
+    <form id="form-insert" class="display-none">
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" />
 
@@ -21,6 +25,19 @@
         <button type="button" id="cadastrar">Cadastrar</button>
     </form>
 
+    <form id="form-update" class="display-none">
+        <label for="nomeUpdate">Nome</label>
+        <input type="text" name="nomeUpdate" id="nomeUpdate" />
+
+        <label for="precoUpdate">Preço</label>
+        <input type="text" name="precoUpdate" id="precoUpdate" />
+
+        <label for="quantidadeUpdate">Quantidade</label>
+        <input type="number" name="quantidadeUpdate" id="quantidadeUpdate" />
+
+        <button type="button" id="update">Atualizar</button>
+    </form>
+
     <h2>Listagem de Produtos</h2>
     <section id="lista-produtos">
         <table>
@@ -29,6 +46,7 @@
                     <th>Nome</th>
                     <th>Preço</th>
                     <th>Quantidade</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="tbody-produtos"></tbody>

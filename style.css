@@ -1,11 +1,164 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --color-primary-lighter: #E7E2E8;
+    --color-primary-light: #C498CD;
+    --color-primary-base: #AD00CF;
+    --color-primary-dark: #690081;
+    --color-primary-darker: #3A0042;
+}
+
 body {
-    margin: 0 4rem;
+    margin: 2rem;
 }
 
 .display-none {
     display: none;
 }
+
 .display-flex {
     display: flex;
     flex-direction: column;
+}
+
+.block-scroll {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000040;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.modal {
+    min-width: 40%;
+    height: 60%;
+    background-color: #FFF;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow: overlay;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.modal-header {
+    height: 10%;
+    border-bottom: 1px solid #DDDDDD;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.modal-body {
+    height: 80%;
+    overflow: overlay;
+}
+
+.modal-footer {
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+button.modal-close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+button.modal-close-button img {
+    width: 1rem;
+}
+
+button.image-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+button.image-button img {
+    width: 2rem;
+}
+
+button.default-button {
+    background-color: var(--color-primary-base);
+    padding: 0 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    transition: .3s;
+}
+
+button.default-button:hover {
+    filter: brightness(1.2);
+}
+
+form#product-form {
+    display: flex;
+    flex-direction: column;
+}
+
+section#main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+div#page-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: separate;
+    border: 1px solid var(--color-primary-base);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: var(--color-primary-base);
+    color: #FFFFFF;
+    border: none;
+}
+
+table tbody {
+    border: 1px solid #000000;
+}
+
+table tbody td {
+    padding: 5px;
+}
+
+table tbody tr {
+    transition: .3s;
+}
+
+table tbody tr:hover {
+    background-color: var(--color-primary-light);
+}
+
+table tbody tr:not(:last-child) td {
+    border-bottom: 1px solid var(--color-primary-lighter);
 }

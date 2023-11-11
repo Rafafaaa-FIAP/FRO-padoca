@@ -1,45 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="./style.css" />
+
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
 
     <title>Padoca da Vila</title>
 </head>
+
 <body>
-    <h1>Gerenciador de produtos</h1>
-    <button id="new-product">Novo Produto</button>
-
-    <form id="form-insert" class="display-none">
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome" />
-
-        <label for="preco">Preço</label>
-        <input type="text" name="preco" id="preco" />
-
-        <label for="quantidade">Quantidade</label>
-        <input type="number" name="quantidade" id="quantidade" />
-
-        <button type="button" id="cadastrar">Cadastrar</button>
-    </form>
-
-    <form id="form-update" class="display-none">
-        <label for="nomeUpdate">Nome</label>
-        <input type="text" name="nomeUpdate" id="nomeUpdate" />
-
-        <label for="precoUpdate">Preço</label>
-        <input type="text" name="precoUpdate" id="precoUpdate" />
-
-        <label for="quantidadeUpdate">Quantidade</label>
-        <input type="number" name="quantidadeUpdate" id="quantidadeUpdate" />
-
-        <button type="button" id="update">Atualizar</button>
-    </form>
-
-    <h2>Listagem de Produtos</h2>
-    <section id="lista-produtos">
+    <section id="main">
+        <div id="page-header">
+            <h1>Gerenciador de produtos</h1>
+            <button id="new-product" class="image-button" title="Novo Produto">
+                <img alt="new product" src="./images/add-product.png">
+            </button>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -49,10 +34,38 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody id="tbody-produtos"></tbody>
+            <tbody id="tbody-products"></tbody>
         </table>
     </section>
 
+    <div id="product-modal" class="modal-container display-none">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Novo Produto</h2>
+                <button class="modal-close-button" title="Fechar" onclick="toggleModal('#product-modal')">
+                    <img alt="close" src="./images/close.png">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="product-form">
+                    <label for="product-name">Nome</label>
+                    <input type="text" name="product-name" id="product-name" />
+    
+                    <label for="product-price">Preço</label>
+                    <input type="text" name="product-price" id="product-price" />
+    
+                    <label for="product-quantity">Quantidade</label>
+                    <input type="number" name="product-quantity" id="product-quantity" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="register-product" class="default-button">Cadastrar</button>
+                <button id="update-product" class="default-button">Alterar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="./script.js"></script>
 </body>
+
 </html>

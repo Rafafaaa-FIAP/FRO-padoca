@@ -161,6 +161,8 @@ body {
 button.modal-close-button {
     background: none;
     border: none;
+    font-size: 1rem;
+    color: #DDDDDD;
     cursor: pointer;
 }
 

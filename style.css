@@ -81,6 +81,8 @@ body {
 
 .text-field {
     width: 100%;
+    display: flex;
+    flex-direction: column;
     cursor: text;
 }
 
@@ -145,6 +147,15 @@ body {
 .text-field fieldset input:valid ~ .placeholder {
     font-size: var(--input-font-size-smaller);
     top: -50%;
+}
+
+.text-field fieldset:has(input.invalid) {
+    border-width: 2px;
+    border-color: #FF0000;
+}
+
+.text-field fieldset input.invalid ~ .placeholder {
+    color: #FF0000;
 }
 
 button.modal-close-button {

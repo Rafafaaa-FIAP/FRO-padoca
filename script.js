@@ -1,15 +1,16 @@
 const products = [];
-let id = 0;
 let foundId;
 
 const btnNewProduct = document.querySelector('#new-product');
 btnNewProduct.addEventListener('click', toggleFormNew);
 
-const btnRegisterProduct = document.querySelector('#register-product');
-btnRegisterProduct.addEventListener('click', registerProduct);
+const btnCreateProduct = document.querySelector('#create-product');
+btnCreateProduct.addEventListener('click', createProduct);
 
 const btnUpdateProduct = document.querySelector('#update-product');
 btnUpdateProduct.addEventListener('click', updateProduct);
+
+readProducts();
 
 function toggleModal(id_modal) {
     document.querySelector('body').classList.toggle('block-scroll');
@@ -22,33 +23,78 @@ function toggleModal(id_modal) {
 function toggleFormNew() {
     toggleModal('#product-modal');
 
-    btnRegisterProduct.classList.remove('display-none');
+    setFormInputs('clean');
+
+    btnCreateProduct.classList.remove('display-none');
     btnUpdateProduct.classList.add('display-none');
 }
 
-function showProducts() {
+function toggleFormUpdate(id) {
+    toggleModal('#product-modal');
+
+    setFormInputs(id);
+
+    btnCreateProduct.classList.add('display-none');
+    btnUpdateProduct.classList.remove('display-none');
+}
+
+function setFormInputs(id) {
+    const h2Elem = document.querySelector('#product-modal .modal-header h2');
+
+    if (id === 'clean') {
+        h2Elem.innerHTML = 'Novo Produto';
+
+        const inputList = document.querySelectorAll('#product-form input');
+
+        for (let i = 0; i < inputList.length; i++) {
+            inputList[i].value = '';
+        }
+    }
+    else {
+        h2Elem.innerHTML = 'Alterar Produto';
+
+        const product = products.find(x => x.id === id);
+
+        foundId = product.id;
+        document.querySelector('#product-name').value = product.name;
+        document.querySelector('#product-price').value = product.price;
+        document.querySelector('#product-quantity').value = product.quantity;
+    }
+}
+
+function checkFormData() {
+    let ret = true;
+
+    const name = document.querySelector('#product-name');
+    if (name.value.trim() === '') {
+        
+    }
+
+    return ret;
+}
+
+function readProducts() {
     const tbodyProducts = document.querySelector('#tbody-products');
 
     tbodyProducts.innerHTML = '';
 
-    for(let i = 0; i < products.length; i++) {
+    for (let i = 0; i < products.length; i++) {
         tbodyProducts.innerHTML += `
             <tr>
-                <td>${products[i].name}</td>
-                <td>${products[i].price}</td>
-                <td>${products[i].quantity}</td>
-                <td>
+                <td class="left">${products[i].name}</td>
+                <td class="right">${products[i].price}</td>
+                <td class="right">${products[i].quantity}</td>
+                <td class="center">
                     <button class="default-button" onclick="deleteProduct(${products[i].id});">Excluir</button>
-                    <button class="default-button" onclick="getInfoProduct(${products[i].id});">Atualizar</button>
+                    <button class="default-button" onclick="toggleFormUpdate(${products[i].id});">Atualizar</button>
                 </td>
             </tr>
         `
     }
 }
 
-function registerProduct() {
-    id++;
-
+function createProduct() {
+    const id = products.length === 0 ? 1 : products[products.length - 1].id + 1;
     const name = document.querySelector('#product-name').value;
     const price = document.querySelector('#product-price').value;
     const quantity = document.querySelector('#product-quantity').value;
@@ -62,72 +108,33 @@ function registerProduct() {
 
     products.push(product);
 
-    toggleFormNew();
-    showProducts();
+    toggleModal('#product-modal');
+    readProducts();
 }
 
 function updateProduct() {
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].id === foundId) {
+            products[i].name = document.querySelector('#product-name').value;
+            products[i].price = document.querySelector('#product-price').value;
+            products[i].quantity = document.querySelector('#product-quantity').value;
+            break;
+        }
+    }
 
+    toggleModal('#product-modal');
+    readProducts();
 }
 
-
-
-// const btnCadastrar = document.querySelector('#cadastrar');
-// const btnAtualizar = document.querySelector('#update');
-
-// btnCadastrar.addEventListener('click', cadastrarProduto);
-
-// btnAtualizar.addEventListener('click', updateProduct);
-
-// function deleteProduct(id) {
-//     for(let i = 0; i < produtos.length; i++) {
-//         if (produtos[i].id === id) {
-//             produtos.splice(i, 1);
-//             break;
-//         }
-//     }
-
-//     listarProdutos();
-// }
-
-// function toggleFormInsert() {
-//     const formInsert = document.querySelector('#form-insert');
-
-//     formInsert.classList.toggle('display-none');
-//     formInsert.classList.toggle('display-flex');
-// }
-
-// function toggleFormUpdate() {
-//     const formUpdate = document.querySelector('#form-update');
-
-//     formUpdate.classList.toggle('display-none');
-//     formUpdate.classList.toggle('display-flex');
-// }
-
-// function getInfoProduct(id) {
-//     foundId = id;
-//     toggleFormUpdate();
-
-//     for(let i = 0; i < produtos.length; i++) {
-//         if (produtos[i].id === id) {
-//             document.querySelector('#nomeUpdate').value = produtos[i].nome;
-//             document.querySelector('#precoUpdate').value = produtos[i].preco;
-//             document.querySelector('#quantidadeUpdate').value = produtos[i].quantidade;
-//             break;
-//         }
-//     }
-// }
-
-// function updateProduct() {
-//     for(let i = 0; i < produtos.length; i++) {
-//         if (produtos[i].id === foundId) {
-//             produtos[i].nome = document.querySelector('#nomeUpdate').value;
-//             produtos[i].preco = document.querySelector('#precoUpdate').value;
-//             produtos[i].quantidade = document.querySelector('#quantidadeUpdate').value;
-//             toggleFormUpdate();
-//             break;
-//         }
-//     }
-
-//     listarProdutos();
-// }
+function deleteProduct(id) {
+    if (confirm('Deseja realmente excluir esse produto?')) {
+        for(let i = 0; i < products.length; i++) {
+            if (products[i].id === id) {
+                products.splice(i, 1);
+                break;
+            }
+        }
+    
+        readProducts();
+    }
+}

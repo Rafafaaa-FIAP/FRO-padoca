@@ -101,7 +101,7 @@ body {
     border-color: var(--color-primary-base);
 }
 
-.text-field fieldset label {
+.text-field fieldset label, .text-field fieldset span {
     padding: 0 5px;
     pointer-events: none;
 }

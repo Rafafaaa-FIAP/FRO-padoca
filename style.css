@@ -30,6 +30,11 @@ body {
     flex-direction: column;
 }
 
+.display-flex-center {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .block-scroll {
     height: 100vh;
     overflow: hidden;
@@ -177,7 +182,7 @@ button.image-button {
 }
 
 button.image-button img {
-    width: 2rem;
+    width: 1.5rem;
 }
 
 button.default-button {
@@ -263,4 +268,8 @@ div#page-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+button#new-product img {
+    width: 2rem;
 }

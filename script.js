@@ -125,9 +125,13 @@ function readProducts() {
                 <td class="left">${products[i].name}</td>
                 <td class="right">${products[i].price}</td>
                 <td class="right">${products[i].quantity}</td>
-                <td class="center">
-                    <button class="default-button" onclick="deleteProduct(${products[i].id});">Excluir</button>
-                    <button class="default-button" onclick="toggleFormUpdate(${products[i].id});">Atualizar</button>
+                <td class="center display-flex-center">
+                    <button class="image-button" onclick="toggleFormUpdate(${products[i].id});">
+                        <img alt="trash" src="./images/edit.png">
+                    </button>
+                    <button class="image-button" onclick="deleteProduct(${products[i].id});">
+                        <img alt="edit" src="./images/trash.png">
+                    </button>
                 </td>
             </tr>
         `
